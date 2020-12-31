@@ -40,7 +40,9 @@
         },
         "classmap": [
             "database/seeds",
-            "app/Models"
+            "app/Models",
+            "app/Traits",
+            "app/Validators"
         ]
     },
     "autoload-dev": {
