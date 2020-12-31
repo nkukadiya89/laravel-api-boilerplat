@@ -7,6 +7,30 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Migration & Seeder for Laravel
+
+### Linux & MacOS
+```
+php artisan migrate --seed
+```
+
+### Windows
+```
+php artisan migrate --seed
+```
+
+## Clear Cache and Optimize File Cache
+
+### Linux & MacOS
+```
+php artisan optimize:clear && composer dumpautoload
+```
+
+### Windows
+```
+php artisan optimize:clear; composer dumpautoload
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

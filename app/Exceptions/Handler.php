@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+use Illuminate\Support\Facades\Lang;
 
 class Handler extends ExceptionHandler
 {
@@ -13,7 +16,11 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        \Illuminate\Auth\AuthenticationException::class,
+        \Illuminate\Auth\Access\AuthorizationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        \Illuminate\Validation\ValidationException::class,
     ];
 
     /**
@@ -50,6 +57,33 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->is('api/*')) {
+            $message = Lang::get('messages.general.laravel_error');
+            $status = 500;
+
+            if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+                $message = 'You do not have the required authorization.';
+                $status  = 403;
+            }
+
+            if ($exception instanceof PostTooLargeException) {
+                $message = 'File too large!';
+                $status = 422;
+            }
+
+            if ($exception instanceof AuthenticationException) {
+                $message = Lang::get('messages.user.token_invalid');
+                $status = 401;
+            }
+
+            $jsonData = array();
+            $jsonData['result'] = [];
+            $jsonData['other_result'] = [];
+            $jsonData['error'] = true;
+            $jsonData['message'] = $message . ' - ' . $exception->getMessage();
+            $jsonData['status_code'] = $status;
+            return response()->json($jsonData, $status);
+        }
         return parent::render($request, $exception);
     }
 }

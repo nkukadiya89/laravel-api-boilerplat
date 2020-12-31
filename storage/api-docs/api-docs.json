@@ -1,0 +1,369 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel API Document",
+        "description": "Laravel Swagger API Documentation",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "developer@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost/laravel-api-boilerplat",
+    "basePath": "/api/v1",
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Authenticate-Controller"
+                ],
+                "summary": "App user Register API",
+                "description": "Register API",
+                "operationId": "register",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Full Name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email Address",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Register Successfully."
+                    },
+                    "400": {
+                        "description": "Sorry Registration is not successfully."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authenticate-Controller"
+                ],
+                "summary": "App user Login API",
+                "description": "Login API",
+                "operationId": "login",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email Address",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login Successfully."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Authenticate-Controller"
+                ],
+                "summary": "APP Logout API",
+                "description": "APP Logout API",
+                "operationId": "logout",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Logout Successfully"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/forgot-password": {
+            "post": {
+                "tags": [
+                    "Authenticate-Controller"
+                ],
+                "summary": "APP Forgot Password API",
+                "description": "APP Forgot Password API",
+                "operationId": "forgotPassword",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email Address",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Password Change successfully. Please check your registered email address."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                }
+            }
+        },
+        "/change-password": {
+            "post": {
+                "tags": [
+                    "Authenticate-Controller"
+                ],
+                "summary": "APP Change Password API",
+                "description": "",
+                "operationId": "changePassword",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "old_password",
+                        "in": "formData",
+                        "description": "Old Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirm",
+                        "in": "formData",
+                        "description": "Password Confirm",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Password changed successfully."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "User-Controller"
+                ],
+                "summary": "Get User List",
+                "description": "Get User List",
+                "operationId": "indexUser",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get User List"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile": {
+            "get": {
+                "tags": [
+                    "User-Controller"
+                ],
+                "summary": "Get User Profile",
+                "description": "Get User Data",
+                "operationId": "showUser",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get User Data"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "User-Controller"
+                ],
+                "summary": "Update User",
+                "description": "Update User Profile API",
+                "operationId": "updateUser",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Full Name",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Profile Updated successfully."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Please contact support team."
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "remember_token": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authenticate-Controller",
+            "description": "Authenticate Controller API List"
+        },
+        {
+            "name": "User-Controller",
+            "description": "API"
+        }
+    ],
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "description": "Unique name of security",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

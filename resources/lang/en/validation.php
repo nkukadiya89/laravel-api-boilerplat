@@ -148,4 +148,19 @@ return [
 
     'attributes' => [],
 
+    'login' => [
+        'email.required' => 'The Email Address is required.',
+        'email.email' => 'The Email Address is invalid.',
+        'email.unique' => 'The Email Address has already been taken.',
+        'password.required' => 'The Password is required.',
+        'name.required' => 'The Full Name is required.',
+    ],
+
+    'profile' => [
+        'email.required' => 'The Email Address is required.',
+        'email.email' => 'The Email Address is invalid.',
+        'email.unique' => 'This Email Address is already exists.',
+        'name.required' => 'The Full Name is required.',
+    ],
+
 ];
